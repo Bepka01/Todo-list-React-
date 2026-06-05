@@ -5,53 +5,36 @@ import Todo from "./components/todosList/todo";
 import Button from "./components/button/Button";
 import InputContainer from "./components/inputContainer/inputContainer";
 
+import { useTodos } from "./hooks/useTodos";
+
 function App() {
-  const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [todoId, setTodoId] = useState(1);
 
-  const addTodo = () => {
-    if (inputValue.trim() === "") {
-      return;
-    }
-    const newTodo = {
-      id: todoId,
-      title: inputValue,
-    };
-    setTodoId(todoId + 1);
-    setTodos([...todos, newTodo]);
-    setInputValue("");
-  };
+  const { todos, addTodo, deleteTodo } = useTodos();
 
-  const deleteTodo = (todoId) => {
-    const filteredTodo = todos.filter((todo) => {
-      return todo.id !== todoId;
-    });
-
-    setTodos(filteredTodo);
-  };
   return (
     <div>
       <Header />
+
       <InputContainer>
         <Input inputValue={inputValue} setInputValue={setInputValue} />
-        <Button addTodo={addTodo} />
+
+        <Button addTodo={() => addTodo(inputValue, setInputValue)} />
       </InputContainer>
-      <div>
-        <ul style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
-          {todos.map((todo, index) => {
-            return (
-              <Todo
-                id={todo.id}
-                deleteTodo={deleteTodo}
-                key={todo.id}
-                index={index + 1}
-                todoTitle={todo.title}
-              ></Todo>
-            );
-          })}
-        </ul>
-      </div>
+
+      <ul style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+        {todos.map((todo, index) => {
+          return (
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              index={index + 1}
+              todoTitle={todo.title}
+              deleteTodo={deleteTodo}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 }
