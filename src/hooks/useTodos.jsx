@@ -1,23 +1,20 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 export const useTodos = () => {
   const [todos, setTodos] = useState([]);
-  const [todoId, setTodoId] = useState(1);
 
-  const addTodo = (inputValue, setInputValue) => {
+  const addTodo = (inputValue) => {
     if (inputValue.trim() === "") {
       return;
     }
 
     const newTodo = {
-      id: todoId,
+      id: uuid(),
       title: inputValue,
     };
 
     setTodos((prev) => [...prev, newTodo]);
-    setTodoId((prev) => prev + 1);
-
-    setInputValue("");
   };
 
   const deleteTodo = (todoId) => {

@@ -1,12 +1,9 @@
-import "./button.scss";
-
-const Button = ({ addTodo }) => {
+const Button = ({ children, onClick, className = "" }) => {
   return (
-    <div>
-      <button onClick={addTodo} className='btn-input'>
-        Click
-      </button>
-    </div>
+    <button onClick={onClick} className={`button ${className}`}>
+      {children}
+    </button>
   );
 };
+
 export default Button;

@@ -1,5 +1,3 @@
-import "./input.scss";
-
 const Input = ({ inputValue, setInputValue }) => {
   return (
     <div>

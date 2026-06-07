@@ -4,6 +4,7 @@ import { useState } from "react";
 import Todo from "./components/todosList/todo";
 import Button from "./components/button/Button";
 import InputContainer from "./components/inputContainer/inputContainer";
+import UlList from "./components/ullist/ulList";
 
 import { useTodos } from "./hooks/useTodos";
 
@@ -13,29 +14,35 @@ function App() {
   const { todos, addTodo, deleteTodo } = useTodos();
 
   return (
-    <div>
+    <>
+      {" "}
       <Header />
-
       <InputContainer>
         <Input inputValue={inputValue} setInputValue={setInputValue} />
 
-        <Button addTodo={() => addTodo(inputValue, setInputValue)} />
+        <Button
+          className='btn-add'
+          onClick={() => {
+            addTodo(inputValue);
+            setInputValue("");
+          }}
+        >
+          Добавить
+        </Button>
       </InputContainer>
-
-      <ul style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+      <UlList>
         {todos.map((todo, index) => {
           return (
             <Todo
               key={todo.id}
-              id={todo.id}
+              todo={todo}
               index={index + 1}
-              todoTitle={todo.title}
               deleteTodo={deleteTodo}
             />
           );
         })}
-      </ul>
-    </div>
+      </UlList>
+    </>
   );
 }
 

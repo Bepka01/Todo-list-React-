@@ -1,14 +1,17 @@
-import "./todo.scss";
-import { BtnDelete } from "../btnDelete/BtnDelete";
+import Button from "../button/Button";
 
-const Todo = ({ todoTitle, id, deleteTodo, index }) => {
+const Todo = ({ todo, deleteTodo, index }) => {
   return (
     <li className='todo'>
-      <h1>
-        {index} - {todoTitle}
-      </h1>
-      <BtnDelete id={id} deleteTodo={deleteTodo} />
+      <p>
+        {index} - {todo.title}
+      </p>
+
+      <Button className='btn-delete' onClick={() => deleteTodo(todo.id)}>
+        Удалить
+      </Button>
     </li>
   );
 };
+
 export default Todo;
