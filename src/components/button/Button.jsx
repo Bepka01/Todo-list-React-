@@ -1,6 +1,8 @@
+import styles from "./button.module.scss";
+
 const Button = ({ children, onClick, className = "" }) => {
   return (
-    <button onClick={onClick} className={`button ${className}`}>
+    <button onClick={onClick} className={className}>
       {children}
     </button>
   );

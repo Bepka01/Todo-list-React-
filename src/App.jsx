@@ -5,6 +5,7 @@ import Todo from "./components/todosList/todo";
 import Button from "./components/button/Button";
 import InputContainer from "./components/inputContainer/inputContainer";
 import UlList from "./components/ullist/ulList";
+import buttonStyles from "./components/button/button.module.scss";
 
 import { useTodos } from "./hooks/useTodos";
 
@@ -21,7 +22,7 @@ function App() {
         <Input inputValue={inputValue} setInputValue={setInputValue} />
 
         <Button
-          className='btn-add'
+          className={buttonStyles.btnAdd}
           onClick={() => {
             addTodo(inputValue);
             setInputValue("");

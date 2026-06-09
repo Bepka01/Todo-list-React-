@@ -1,3 +1,5 @@
+import styles from "./input.module.scss";
+
 const Input = ({ inputValue, setInputValue }) => {
   return (
     <div>
@@ -6,7 +8,7 @@ const Input = ({ inputValue, setInputValue }) => {
         onChange={(e) => {
           setInputValue(e.target.value);
         }}
-        className='input'
+        className={styles.input}
         type='text'
         placeholder='Добавить задачу'
       />

@@ -1,5 +1,7 @@
+import styles from "./inputContainer.module.scss";
+
 const InputContainer = ({ children }) => {
-  return <div className='inputContainer'>{children}</div>;
+  return <div className={styles.inputContainer}>{children}</div>;
 };
 
 export default InputContainer;
